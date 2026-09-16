@@ -1,3 +1,14 @@
+## Spec-Driven Development
+
+Before starting non-trivial work, check `specs/` for a relevant spec and follow it if one exists.
+
+For a new non-trivial feature (a new page, real design decisions, anything more than a config tweak
+or typo fix), draft a spec first using `specs/TEMPLATE.md` before writing code. Trivial changes
+(config tweaks, dependency bumps, typo fixes, copy edits) can skip this.
+
+Mark a spec's status `Done` once implemented — leave it in place as a record. See `specs/README.md`
+for the full convention (numbering, status lifecycle, when to escalate a spec to its own folder).
+
 ## Development
 
 When starting the dev server, use background mode:
