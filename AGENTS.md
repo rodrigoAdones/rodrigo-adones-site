@@ -9,6 +9,13 @@ or typo fix), draft a spec first using `specs/TEMPLATE.md` before writing code. 
 Mark a spec's status `Done` once implemented — leave it in place as a record. See `specs/README.md`
 for the full convention (numbering, status lifecycle, when to escalate a spec to its own folder).
 
+## Architecture Decision Records
+
+Technical decisions with real alternatives (tooling, framework config, data modeling, hosting,
+integrations) are recorded in `docs/adr/`. Check there before making a structural choice, and
+write a new ADR from `docs/adr/TEMPLATE.md` when you make one. See `docs/adr/README.md` for the
+convention (numbering, status lifecycle, superseding rather than editing).
+
 ## Development
 
 This repo follows TDD: for any new behavior, write a failing test first, then write the
