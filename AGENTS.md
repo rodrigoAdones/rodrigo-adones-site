@@ -11,6 +11,9 @@ for the full convention (numbering, status lifecycle, when to escalate a spec to
 
 ## Development
 
+This repo follows TDD: for any new behavior, write a failing test first, then write the
+implementation code to make it pass. Don't consider work done until the tests pass.
+
 When starting the dev server, use background mode:
 
 ```
