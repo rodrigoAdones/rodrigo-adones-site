@@ -1,7 +1,7 @@
 # 0001: Static Site Generator
 
-**Status:** Proposed
-**Date:** 2026-09-15
+**Status:** Accepted
+**Date:** 2026-09-15 (accepted 2026-09-20)
 
 Recommendation: Astro, with Next.js as a defensible second.
 
@@ -96,9 +96,11 @@ creates any real chance of not shipping this month, choose Next.js and stop read
 
 ## Decision
 
-**Astro, static output** — conditional on spending one evening on the scaffold in Appendix A and
-confirming it feels good. If it does not, take Appendix B and ship Next.js; the rest of the ADR set
-is unaffected, because every other decision is framework-independent.
+**Astro, static output.**
+
+The scaffold in Appendix A was built and evaluated; it felt right, and the fallback in Appendix B
+was not needed. The rest of the ADR set is unaffected, because every other decision is
+framework-independent.
 
 ## Consequences
 
@@ -188,6 +190,8 @@ export default defineConfig({
 That is the whole tree.
 
 ## Appendix B — Next.js scaffold (static export), the fallback
+
+*Not taken.* Kept as the record of what the alternative would have cost to own.
 
 ```
 personal-site/
