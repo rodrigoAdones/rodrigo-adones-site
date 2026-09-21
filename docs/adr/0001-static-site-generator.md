@@ -121,6 +121,8 @@ personal-site/
 │   ├── content/blog/
 │   │   ├── dora-sin-politica.md
 │   │   └── ai-assisted-delivery.md
+│   ├── lib/
+│   │   └── posts.ts                   # getPublishedPosts(), see 0002
 │   ├── layouts/
 │   │   ├── BaseLayout.astro
 │   │   └── PostLayout.astro
@@ -153,13 +155,12 @@ personal-site/
 
 ```astro
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getPublishedPosts } from '../../lib/posts';   // see 0002 — the only place drafts are filtered
 import PostLayout from '../../layouts/PostLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) =>
-    import.meta.env.PROD ? !data.draft : true
-  );
+  const posts = await getPublishedPosts();
   return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
 }
 
