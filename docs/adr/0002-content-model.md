@@ -1,7 +1,7 @@
 # 0002: Content Model — Markdown in the Same Repo, Schema-Validated
 
-**Status:** Proposed
-**Date:** 2026-09-15
+**Status:** Accepted
+**Date:** 2026-09-15 (accepted 2026-09-20)
 
 Recommendation: accept. This was the original proposal and it is right.
 
@@ -28,19 +28,20 @@ is validated against an explicit schema at build time.
 
 | Field | Type | Required | Notes |
 |---|---|---|---|
-| `title` | string | yes | |
+| `title` | string, max 80 chars | yes | It is the `<title>` and OG title; longer gets truncated in search results and link previews |
 | `description` | string, 50–160 chars | yes | Used for `<meta>`, OG, RSS, and the index card. Enforce the length — it is your click-through rate. |
 | `pubDate` | date | yes | |
 | `updatedDate` | date | no | Render "updated on" when present; good-faith signal |
 | `lang` | `'es' \| 'en'` | yes | See [0006](0006-language-strategy.md) |
-| `tags` | string[], max 4 | yes | Constrain to a closed list mapped to the four pillars — AI-native delivery, platform & DX, delivery measurement, commerce & payments. An open tag vocabulary becomes a mess by post 15, and a closed one forces every post to declare which pillar it serves. |
+| `tags` | string[], 1–4 items | yes | Constrain to a closed list mapped to the four pillars — AI-native delivery, platform & DX, delivery measurement, commerce & payments. An open tag vocabulary becomes a mess by post 15, and a closed one forces every post to declare which pillar it serves. |
 | `draft` | boolean | no, default false | Excluded from production builds |
 | `heroImage` | image | no | |
 | `canonicalUrl` | url | no | For cross-posting, see Consequences |
 | `discussionUrl` | url | no | Link to the LinkedIn discussion thread; see [0011](0011-no-comments.md) |
 | `aliases` | string[] | no | Old paths that should 301 here — see [0008](0008-url-structure.md) |
 
-`readingTime` is computed, never authored.
+`readingTime` is computed, never authored — a small remark plugin injects it into
+`remarkPluginFrontmatter` at build time (the `remark-reading-time` pattern from the Astro docs).
 
 ### Schema as code
 
@@ -48,8 +49,9 @@ is validated against an explicit schema at build time.
 25 lines:
 
 ```ts
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 const PILLARS = ['ai-delivery', 'platform-dx', 'delivery-metrics', 'commerce-payments'] as const;
 
@@ -65,8 +67,8 @@ const blog = defineCollection({
       tags: z.array(z.enum(PILLARS)).min(1).max(4),
       draft: z.boolean().default(false),
       heroImage: image().optional(),
-      canonicalUrl: z.string().url().optional(),
-      discussionUrl: z.string().url().optional(),
+      canonicalUrl: z.url().optional(),
+      discussionUrl: z.url().optional(),
       aliases: z.array(z.string()).optional(),
     }),
 });
@@ -76,6 +78,32 @@ export const collections = { blog };
 
 A post with a 30-character description now fails CI. In Next.js, that check is code you write and
 maintain.
+
+Two details of the sample that are easy to get wrong:
+
+- `z` is imported from `astro/zod`, not `astro:content`. The `astro:content` re-export is
+  deprecated and removed in Astro 8. Astro 7 bundles Zod 4, so URL fields use `z.url()` —
+  `z.string().url()` is deprecated there.
+- `image()` resolves a path relative to the markdown file and requires the asset to live under
+  `src/`, so it can be optimized at build time. A `heroImage` pointing into `public/` fails
+  validation. This is the same constraint [0010](0010-social-preview-images.md) works within.
+
+### Draft exclusion is a query concern, not a schema concern
+
+The schema only *declares* `draft`. Nothing in Astro excludes drafts automatically — every
+`getCollection('blog')` call (post pages, index, tag pages, RSS, sitemap) would have to filter
+them, and forgetting once ships a draft. The site therefore reads the collection through a single
+helper, and nothing else calls `getCollection('blog')` directly:
+
+```ts
+// src/lib/posts.ts
+import { getCollection } from 'astro:content';
+
+export const getPublishedPosts = () =>
+  getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+```
+
+Drafts remain visible in `astro dev` so they can be previewed.
 
 ## Consequences
 
