@@ -1,7 +1,7 @@
-# 0003: Build Strategy — Full Rebuild per Commit
+# 0003: Build Strategy — Full Rebuild per Push
 
-**Status:** Proposed
-**Date:** 2026-09-15
+**Status:** Accepted
+**Date:** 2026-09-15 (accepted 2026-09-20)
 
 Recommendation: accept. **This corrects the original design.**
 
@@ -29,7 +29,12 @@ systems where it is correct.
 ## Decision
 
 Push to `main` → GitHub Actions runs a **full site build** → deploy the whole output directory. No
-incremental generation, no per-article pipeline, no build cache beyond the dependency cache.
+incremental generation, no per-article pipeline, no build cache beyond the dependency cache. Pushes
+to a PR branch run the identical build without the deploy step ([0005](0005-ci-cd.md)).
+
+This depends on Astro's default `output: 'static'` — no adapter, no server runtime. `astro build`
+emits a plain `dist/` directory and that directory is the whole deployable, which is what lets
+[0004](0004-hosting.md) serve it as static assets.
 
 Revisit only if build time exceeds ~2 minutes. At a realistic 1–4 posts/month, that is several
 years away, and Astro's content layer handles thousands of entries.
@@ -38,4 +43,9 @@ years away, and Astro's content layer handles thousands of entries.
 
 - The invariant "what is deployed is exactly what the repo says" holds at all times. Every deploy
   is a full, reproducible rebuild from source — which also means rollback is just a revert.
+- That invariant has a precondition: the build runs on a fresh runner. Astro keeps its own
+  incremental content-layer cache in `.astro/` and `node_modules/.astro/`; CI must never persist
+  those between runs. [0005](0005-ci-cd.md) caches only the pnpm store (`cache: pnpm`), which is
+  fine. Adding `actions/cache` on `node_modules/` or `.astro/` to save seconds would quietly
+  reintroduce the staleness this ADR exists to rule out.
 - Slightly more CI minutes. Free-tier irrelevant (N4, N6).
