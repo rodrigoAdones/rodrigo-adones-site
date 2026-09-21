@@ -16,6 +16,8 @@ routine feature work (that's a spec), and for choices with no real alternative.
 ## Numbering
 
 ADRs are numbered sequentially as flat files: `0001-<kebab-slug>.md`, `0002-<kebab-slug>.md`, etc.
+`0000-context-and-constraints.md` is the exception — it's the shared requirements, constraints,
+cost and risk context that individual ADRs reference (F1–F6, N1–N6) instead of restating.
 
 ## Status lifecycle
 
