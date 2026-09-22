@@ -103,7 +103,10 @@ export const getPublishedPosts = () =>
   getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
 ```
 
-Drafts remain visible in `astro dev` so they can be previewed.
+Drafts remain visible in `astro dev` so they can be previewed. Note that a PR preview is a
+production build and *does* drop drafts — the branch, not the flag, is the draft mechanism for
+unpublished posts ([0005](0005-ci-cd.md)). `draft: true` is for deliberately merging an
+unfinished post to `main`.
 
 ## Consequences
 
