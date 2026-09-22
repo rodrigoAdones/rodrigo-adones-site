@@ -133,13 +133,13 @@ personal-site/
 │   ├── pages/
 │   │   ├── index.astro
 │   │   ├── about.astro
+│   │   ├── 404.astro                # served by Workers not_found_handling, see 0004
 │   │   ├── blog/index.astro
 │   │   ├── blog/[...slug].astro
 │   │   ├── tags/[tag].astro
 │   │   └── rss.xml.ts               # see 0007
 │   └── styles/global.css
 ├── public/
-│   ├── _redirects
 │   ├── robots.txt
 │   └── og-default.png
 ├── astro.config.mjs

@@ -1,7 +1,7 @@
 # 0004: Hosting — Cloudflare Workers Static Assets
 
-**Status:** Proposed
-**Date:** 2026-09-15
+**Status:** Accepted
+**Date:** 2026-09-15 (accepted 2026-09-21)
 
 Recommendation: Workers Static Assets over Cloudflare Pages.
 
@@ -23,13 +23,19 @@ supported.
 | Dimension | Assessment |
 |---|---|
 | Complexity | Low — a `wrangler.jsonc` with an `assets` block; no Worker script needed for pure static |
-| Cost | Free — static asset requests are not billed |
+| Cost | Free — static asset requests are not billed and do not count as Worker invocations |
 | Future headroom | **High** |
 | Ecosystem direction | **Where Cloudflare is investing** |
 
 **Pros:** access to Durable Objects, Cron Triggers, KV/D1, Queues, gradual deployments, Tail
 Workers and fuller observability *if ever needed*; a single primitive to learn that also covers
 the dynamic case; better local dev via the Cloudflare Vite plugin.
+
+The reason "additive, not a migration" is literally true: with no `main` script there is no Worker
+invocation at all, so the free tier's 100k-requests/day limit never applies. When a `main` is
+eventually added, assets are still matched and served *before* the Worker runs (the default,
+`run_worker_first: false`), so only requests that miss the assets — a future `/api/subscribe` —
+count against that limit. Adding dynamic behaviour does not change how the static site is served.
 
 **Cons:** you configure `wrangler.jsonc` yourself; custom domains must be on a Cloudflare zone;
 branch-deploy controls are less granular than Pages'.
@@ -70,10 +76,14 @@ contained, well-documented job.
 
 ## Consequences
 
-- `_headers` and `_redirects` semantics differ from Pages in detail — verify the redirect file
-  behaves as expected on first deploy ([0008](0008-url-structure.md) depends on it).
+- `_headers` and `_redirects` are read from the root of the assets directory (`dist/`), with no
+  `wrangler.jsonc` configuration; their semantics differ from Pages in detail — verify the
+  redirect file behaves as expected on first deploy ([0008](0008-url-structure.md) depends on it).
+- `not_found_handling: "404-page"` serves `dist/404.html`, which only exists if
+  `src/pages/404.astro` does. Without it, misses return a bare 404.
 - Preview deployments come from `wrangler versions upload`, not from Pages' branch deploys.
-  Slightly more wiring in CI; see [0005](0005-ci-cd.md).
+  Slightly more wiring in CI; see [0005](0005-ci-cd.md). The preview hostname derives from the
+  Worker `name`, so it is set once and matches `package.json`.
 
 ## Reference config
 
@@ -81,19 +91,26 @@ contained, well-documented job.
 
 ```jsonc
 {
-  "name": "personal-site",
+  "name": "rodrigo-personal-site",
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "html_handling": "force-trailing-slash"   // pinned to match Astro's trailingSlash: 'always' (0001, 0008)
   }
 }
 ```
 
 No `main` entry: a pure static site needs no Worker script. Add one only when the "future
-headroom" above is actually cashed in.
+headroom" above is actually cashed in; `compatibility_date` is inert until then.
 
-**`public/_redirects`** — generated from `aliases` per [0008](0008-url-structure.md):
+`html_handling` is pinned rather than left on its `auto-trailing-slash` default so the host and
+the framework cannot drift on the one URL decision [0008](0008-url-structure.md) says to make once.
+
+**`dist/_redirects`** — a build product, generated from `aliases` per
+[0008](0008-url-structure.md). It is *not* a hand-maintained file in `public/`: Astro copies
+`public/` verbatim, so a generated file is written into `dist/` after `astro build` (the exact
+step is 0008's). One line per alias:
 
 ```
 /old-post-path/  /blog/new-slug/  301
@@ -101,6 +118,8 @@ headroom" above is actually cashed in.
 
 ## Sources
 
+- [Static Assets · Cloudflare Workers docs](https://developers.cloudflare.com/workers/static-assets/)
+- [Static Assets routing and `html_handling` / `not_found_handling`](https://developers.cloudflare.com/workers/static-assets/routing/)
+- [`_redirects` and `_headers` for Static Assets](https://developers.cloudflare.com/workers/static-assets/headers-and-redirects/)
+- [Astro · Cloudflare Workers framework guide](https://developers.cloudflare.com/workers/framework-guides/web-apps/astro/)
 - [Migrate from Pages to Workers · Cloudflare docs](https://developers.cloudflare.com/workers/static-assets/migration-guides/migrate-from-pages/)
-- [Deploy a static Next.js site · Cloudflare Pages docs](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/)
-- [Next.js · Cloudflare Workers docs](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/)
