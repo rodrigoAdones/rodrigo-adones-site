@@ -93,14 +93,22 @@ Two details of the sample that are easy to get wrong:
 The schema only *declares* `draft`. Nothing in Astro excludes drafts automatically — every
 `getCollection('blog')` call (post pages, index, tag pages, RSS, sitemap) would have to filter
 them, and forgetting once ships a draft. The site therefore reads the collection through a single
-helper, and nothing else calls `getCollection('blog')` directly:
+helper, and nothing else calls `getCollection('blog')` directly. The helper also sorts, because
+every consumer — post pages, index, tag pages, RSS, sitemap, the homepage's latest-three — wants
+newest first:
 
 ```ts
 // src/lib/posts.ts
 import { getCollection } from 'astro:content';
 
-export const getPublishedPosts = () =>
-  getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+export const getPublishedPosts = async () => {
+  const posts = await getCollection('blog', ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true
+  );
+  return posts.sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+};
 ```
 
 Drafts remain visible in `astro dev` so they can be previewed. Note that a PR preview is a
