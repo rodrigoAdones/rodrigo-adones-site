@@ -36,8 +36,9 @@ derives from the post link, which is unchanged, so no one is emailed twice.
 
 ## Consequences
 
-- No moderation, no third-party script, no consent-banner risk ([0009](0009-analytics.md) keeps
-  the same property).
+- No moderation, no comment-related script, no consent-banner risk. The site does carry one
+  third-party script — the analytics beacon ([0009](0009-analytics.md)) — but it is cookieless,
+  so the no-consent-banner property holds across both decisions.
 - Discussion lives on LinkedIn, not on the site; adding the `discussionUrl` is a manual step
   after each LinkedIn post.
 - **Email subscribers never see the discussion link.** The order of events is publish → the post
