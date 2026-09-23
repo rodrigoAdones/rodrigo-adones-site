@@ -38,7 +38,7 @@ is validated against an explicit schema at build time.
 | `heroImage` | image | no | |
 | `canonicalUrl` | url | no | For cross-posting, see Consequences |
 | `discussionUrl` | url | no | Link to the LinkedIn discussion thread; see [0011](0011-no-comments.md) |
-| `aliases` | string[] | no | Old paths that should 301 here — see [0008](0008-url-structure.md) |
+| `aliases` | string[] | no | Old paths that should 301 here, absolute and with a trailing slash — see [0008](0008-url-structure.md) |
 
 `readingTime` is computed, never authored — a small remark plugin injects it into
 `remarkPluginFrontmatter` at build time (the `remark-reading-time` pattern from the Astro docs).
@@ -69,7 +69,7 @@ const blog = defineCollection({
       heroImage: image().optional(),
       canonicalUrl: z.url().optional(),
       discussionUrl: z.url().optional(),
-      aliases: z.array(z.string()).optional(),
+      aliases: z.array(z.string().startsWith('/').endsWith('/')).optional(),
     }),
 });
 

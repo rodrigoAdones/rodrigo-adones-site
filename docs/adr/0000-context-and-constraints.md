@@ -91,7 +91,7 @@ containing a real CI pipeline and an ADR set is itself a work sample.
 5. [ ] Spend one evening with the Astro scaffold; confirm Astro or fall back to Next.js ([0001](0001-static-site-generator.md))
 6. [ ] Scaffold, content schema, three pages, post layout
 7. [ ] RSS + sitemap + robots.txt; static default OG image
-8. [ ] `wrangler.jsonc`; connect domain; verify `_redirects`
+8. [ ] `wrangler.jsonc`; connect domain (`rodrigoadones.dev`); verify `_redirects`
 9. [ ] Actions: PR checks + preview, `main` → deploy
 10. [ ] Cloudflare Web Analytics; embed subscribe form
 
