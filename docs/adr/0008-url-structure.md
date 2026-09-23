@@ -3,7 +3,8 @@
 **Status:** Accepted
 **Date:** 2026-09-15 (accepted 2026-09-23)
 
-Recommendation: accept. **Decide this before writing any code.**
+Decided before any page was written, which was the point: these are the site's most expensive
+commitments to reverse.
 
 ## Context
 

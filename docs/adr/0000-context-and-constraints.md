@@ -47,7 +47,7 @@ Actions, and a per-article generation step on each new post. The overall shape i
 complexity level for N1 and N4 and was kept. Four decisions diverge from the original proposal:
 
 - [0001](0001-static-site-generator.md) — the framework choice is closer than it looks; Astro over Next.js
-- [0003](0003-build-strategy.md) — per-article generation replaced by a full rebuild per commit
+- [0003](0003-build-strategy.md) — per-article generation replaced by a full rebuild per push
 - [0004](0004-hosting.md) — Pages vs Workers is now a real decision; Workers Static Assets
 - [0007](0007-newsletter.md) — the newsletter is the one requirement that quietly threatens "pure static"
 
@@ -71,7 +71,7 @@ containing a real CI pipeline and an ADR set is itself a work sample.
 |---|---|---|---|
 | **Site gets built, blog stays empty** | **High** | **High** | The only risk that actually matters. Mitigation is process, not architecture: write three posts *before* building, so launch day has content. Timebox the build to two weekends. |
 | Yak-shaving the platform instead of writing | High | High | This ADR set is the yak, shaved. Freeze the stack; any further platform change must wait until 5 posts are published. |
-| Malformed RSS silently stops the newsletter | Medium | High | CI assertion on feed validity + newest item ([0007](0007-newsletter.md)) |
+| Malformed RSS silently stops the newsletter | Medium | High | CI assertions over `dist/`: well-formed XML, every item link resolves, every built post appears, dates descend ([0007](0007-newsletter.md)) |
 | Broken published URL after a rename | Medium | Medium | `aliases` + 301s from day one ([0008](0008-url-structure.md)) |
 | Newsletter vendor lock-in | Low | Medium | Quarterly list export |
 | Framework churn / dependency rot | Medium | Low | Minimal dependency tree; Dependabot monthly, not weekly |
@@ -88,7 +88,7 @@ containing a real CI pipeline and an ADR set is itself a work sample.
 
 **Phase 1 — build (target: two weekends)**
 
-5. [ ] Spend one evening with the Astro scaffold; confirm Astro or fall back to Next.js ([0001](0001-static-site-generator.md))
+5. [x] Spend one evening with the Astro scaffold — confirmed; Astro accepted, the Next.js fallback was not taken ([0001](0001-static-site-generator.md))
 6. [ ] Scaffold, content schema, three pages, post layout
 7. [ ] RSS + sitemap + robots.txt; static default OG image
 8. [ ] `wrangler.jsonc`; connect domain (`rodrigoadones.dev`); verify `_redirects`
@@ -103,3 +103,8 @@ containing a real CI pipeline and an ADR set is itself a work sample.
 
 **Frozen until 5 posts are live:** framework changes, search, comments, self-hosted newsletter,
 i18n route trees, any new dependency.
+
+The dependency freeze covers *new* decisions, not the ones already made. Dependencies an accepted
+ADR already sanctions are part of the frozen stack and may be added when their phase arrives —
+`satori` and `resvg` for item 12 ([0010](0010-social-preview-images.md)) being the case that
+otherwise reads as a contradiction. Anything not already named in an accepted ADR waits.

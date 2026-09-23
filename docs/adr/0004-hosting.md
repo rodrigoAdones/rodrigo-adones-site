@@ -108,9 +108,9 @@ headroom" above is actually cashed in; `compatibility_date` is inert until then.
 the framework cannot drift on the one URL decision [0008](0008-url-structure.md) says to make once.
 
 **`dist/_redirects`** — a build product, generated from `aliases` per
-[0008](0008-url-structure.md). It is *not* a hand-maintained file in `public/`: Astro copies
-`public/` verbatim, so a generated file is written into `dist/` after `astro build` (the exact
-step is 0008's). One line per alias:
+[0008](0008-url-structure.md). It is *not* a hand-maintained file in `public/`, which Astro copies
+verbatim; it is emitted during the build by a route injected at `/_redirects` (0008 has the
+mechanism and why an after-build hook could not do it). One line per alias:
 
 ```
 /old-post-path/  /blog/new-slug/  301

@@ -29,7 +29,9 @@ constraint N1 (see [0000](0000-context-and-constraints.md)).
   `description` or a malformed `date` **fails the build**, not production. This is the single
   highest-value feature for a solo blog, and in Next.js you build it yourself.
 - Ships ~zero JavaScript by default. N3 (performance as a credibility signal) is met without
-  effort or a performance budget to police.
+  effort or a performance budget to police. (The site does end up with one third-party script —
+  the analytics beacon in [0009](0009-analytics.md) — which that ADR accepts explicitly and
+  justifies on the same N3 grounds.)
 - `@astrojs/rss` and `@astrojs/sitemap` are official, ~10 lines each. Directly serves
   [0007](0007-newsletter.md), where RSS becomes load-bearing infrastructure rather than a nicety.
 - `astro:assets` optimizes images at build time with no host involvement.
@@ -123,6 +125,10 @@ personal-site/
 │   │   └── ai-assisted-delivery.md
 │   ├── lib/
 │   │   └── posts.ts                   # getPublishedPosts(), see 0002
+│   ├── integrations/
+│   │   └── redirects.js               # injects the _redirects route, see 0008
+│   ├── routes/
+│   │   └── redirects.ts               # emits dist/_redirects from aliases, see 0008
 │   ├── layouts/
 │   │   ├── BaseLayout.astro
 │   │   └── PostLayout.astro
@@ -139,6 +145,8 @@ personal-site/
 │   │   ├── tags/[tag].astro
 │   │   └── rss.xml.ts               # see 0007
 │   └── styles/global.css
+├── scripts/
+│   └── check-feed.mjs              # see 0005, 0007
 ├── public/
 │   ├── robots.txt
 │   └── og-default.png
@@ -177,18 +185,29 @@ const { Content } = await render(post);
 ```js
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import mdx from '@astrojs/mdx';
+import redirects from './src/integrations/redirects.js';
 
 export default defineConfig({
-  site: 'https://YOURDOMAIN',   // ← 0008 blocks on this
-  trailingSlash: 'always',
-  integrations: [mdx(), sitemap()],
+  site: 'https://rodrigoadones.dev',   // resolved in 0008
+  trailingSlash: 'always',             // decided in 0008
+  integrations: [sitemap(), redirects()],
   markdown: { shikiConfig: { theme: 'github-dark-dimmed' } },
 });
 ```
 
-**Dependencies:** `astro`, `@astrojs/rss`, `@astrojs/sitemap`, `@astrojs/mdx`, `wrangler` (dev).
-That is the whole tree.
+**No MDX.** `@astrojs/mdx` was in the original sketch and is deliberately absent: the collection
+loader in [0002](0002-content-model.md) globs `**/*.md` and would not pick up an `.mdx` file at
+all, and [0007](0007-newsletter.md) renders `post.body` with `markdown-it` to build the email,
+which cannot process MDX. An MDX post would be invisible twice over. Markdown only.
+
+**Dependencies.** Runtime: `astro`, `@astrojs/rss`, `@astrojs/sitemap`, `markdown-it` and
+`sanitize-html` (the feed, [0007](0007-newsletter.md)). Dev: `@astrojs/check` and `typescript`
+(for `astro check`), `linkinator`, `wrangler`, plus `eslint` and `vitest`, which the repo already
+has. Phase 2 adds `satori` and `resvg` for per-post OG images ([0010](0010-social-preview-images.md)).
+
+Still a small tree, and that was the argument: every one of these is a leaf with no framework
+surface of its own. Compare Appendix B, where the equivalent list is the *beginning* of a
+markdown pipeline you own.
 
 ## Appendix B — Next.js scaffold (static export), the fallback
 

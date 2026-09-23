@@ -29,15 +29,15 @@ Implementation notes:
 - Set `lang` on `<html>` **per post** from frontmatter, not globally. This is what screen readers
   and search engines actually consume.
 - Show a small, unobtrusive language badge on index cards so readers are not surprised.
-- Offer filtered views at `/es` and `/en` as *filters over the same content*, not separate sites.
+- Offer filtered views at `/es/` and `/en/` as *filters over the same content*, not separate sites.
   Cheap, and gives a clean link to share with an audience in one language.
 - UI chrome (nav, footer) in English — it is the lower-friction default for a mixed audience and
   avoids a translation layer for six words.
 - No `hreflang`: there are no translation pairs to relate. Adding `hreflang` without pairs is
   worse than omitting it.
 - **Do not enable Astro's `i18n` config.** It exists to build exactly the rejected option —
-  locale-prefixed route trees, translation pairs, `hreflang`, locale redirects. The `/es` and
-  `/en` views are ordinary pages (`src/pages/[lang]/index.astro` with `getStaticPaths` over
+  locale-prefixed route trees, translation pairs, `hreflang`, locale redirects. The `/es/` and
+  `/en/` views are ordinary pages (`src/pages/[lang]/index.astro` with `getStaticPaths` over
   `['es', 'en']`, filtering `getPublishedPosts()` by `data.lang`), not locales.
 - Chrome and article language must not bleed into each other. `<html lang>` follows the post,
   so the English nav and footer inherit it and get read with Spanish pronunciation rules by
