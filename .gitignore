@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# impeccable local artifacts (screenshots, decision logs, caches, machine config)
+.impeccable/review/
+.impeccable/questions/
+.impeccable/hook.cache.json
+.impeccable/config.local.json
