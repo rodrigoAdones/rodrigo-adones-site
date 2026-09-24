@@ -1,17 +1,118 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import CallsignStrip from '../components/CallsignStrip.astro';
+import LatestRack from '../components/LatestRack.astro';
+import PillarBays from '../components/PillarBays.astro';
+import SubscribeStrip from '../components/SubscribeStrip.astro';
+import Footer from '../components/Footer.astro';
+import { byPillar, formatZulu, latest, toStrips } from '../lib/strips';
+import { IS_SAMPLE_DATA, samplePosts } from '../data/sample-posts';
 
+const strips = toStrips(samplePosts);
+const builtAt = formatZulu(new Date());
+// The bays already list every post; the latest rack shows only the inked newest strip until
+// there are enough posts that three latest differ meaningfully from the bays.
+const LATEST_COUNT = strips.length > 9 ? 3 : 1;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Rodrigo Adones"
+  description="Rodrigo Adones writes on AI-native delivery, platform & DX, delivery measurement, and commerce & payments, in English and Spanish."
+>
+  <div class="board">
+    <Sidebar current="home" />
+
+    <main class="board__main" id="main">
+      <p class="now-rule">
+        <span>Board as of <time>{builtAt}</time></span>
+        <span>
+          {`${strips.length} ${strips.length === 1 ? 'strip' : 'strips'} filed`}
+          {IS_SAMPLE_DATA && ' · sample strips'}
+        </span>
+      </p>
+
+      <CallsignStrip />
+      <LatestRack strips={latest(strips, LATEST_COUNT)} linked={!IS_SAMPLE_DATA} />
+      <PillarBays bays={byPillar(strips)} linked={!IS_SAMPLE_DATA} />
+      <SubscribeStrip />
+      <Footer />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .board {
+    display: grid;
+    grid-template-columns: 13.5rem minmax(0, 1fr);
+    align-content: start;
+    min-height: 100vh;
+  }
+
+  .board__main {
+    display: grid;
+    align-content: start;
+    gap: var(--space-8);
+    width: 100%;
+    max-width: 76rem;
+    padding: var(--space-5) var(--space-7) var(--space-6);
+  }
+
+  /* The one red line on the board: everything is read against "now". */
+  .now-rule {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-5);
+    margin-bottom: calc(var(--space-6) - var(--space-8));
+    padding-bottom: var(--space-2);
+    border-bottom: 2px solid var(--pencil);
+    color: var(--pencil);
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .board__main :global(.section-head) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .board__main :global(.section-head h2) {
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .board__main :global(.section-head__link) {
+    font-weight: 700;
+  }
+
+  .board__main :global(.section-head__meta) {
+    font-size: 0.875rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 60rem) {
+    .board {
+      grid-template-columns: 1fr;
+    }
+
+    .board__main {
+      gap: var(--space-7);
+      padding: var(--space-4) var(--space-4) var(--space-5);
+    }
+
+    .now-rule {
+      margin-bottom: calc(var(--space-5) - var(--space-7));
+      font-size: 0.75rem;
+    }
+  }
+</style>

@@ -1,0 +1,336 @@
+---
+import { PILLARS, formatStripDate, padSequence, type Strip } from '../lib/strips';
+
+interface Props {
+  strip: Strip;
+  /** Full strips carry the description and every field; compact ones rack inside a bay. */
+  variant?: 'full' | 'compact';
+  /** Only the newest strip on the board is solid-inked. */
+  inked?: boolean;
+  headingLevel?: 'h3' | 'h4';
+  /** Sample strips render unlinked: their post pages do not exist. */
+  linked?: boolean;
+}
+
+const { strip, variant = 'full', inked = false, headingLevel = 'h3', linked = true } = Astro.props;
+const Heading = headingLevel;
+const pillar = PILLARS.find((p) => p.id === strip.pillar);
+const langLabel = strip.lang === 'es' ? 'Español' : 'English';
+---
+
+<article
+  class:list={['strip', `strip--${variant}`, { 'strip--inked': inked }]}
+  style={`--strip: var(--strip-${strip.pillar})`}
+>
+  <div class="strip__seq">
+    <span class="visually-hidden">Post number</span>
+    <span class="strip__number">{padSequence(strip.sequence)}</span>
+    {variant === 'full' && <span class="strip__code">{pillar?.code}</span>}
+  </div>
+
+  <div class="strip__body">
+    <Heading class="strip__title" lang={strip.lang}>
+      {linked ? <a href={strip.href}>{strip.title}</a> : strip.title}
+    </Heading>
+    {variant === 'full' && <p class="strip__desc" lang={strip.lang}>{strip.description}</p>}
+  </div>
+
+  <dl class="strip__fields">
+    <div class="strip__field">
+      <dt class="visually-hidden">Published</dt>
+      <dd><time datetime={strip.pubDate.toISOString()}>{formatStripDate(strip.pubDate)}</time></dd>
+    </div>
+    <div class="strip__field">
+      <dt class="visually-hidden">Language</dt>
+      <dd><abbr title={langLabel}>{strip.lang.toUpperCase()}</abbr></dd>
+    </div>
+    {
+      variant === 'full' && (
+        <>
+          <div class="strip__field">
+            <dt class="visually-hidden">Reading time</dt>
+            <dd>{strip.readingMinutes} min</dd>
+          </div>
+          <div class="strip__field strip__field--status">
+            <dt class="visually-hidden">Status</dt>
+            <dd>
+              {strip.status === 'updated' && strip.updatedDate ? (
+                <>
+                  Upd{' '}
+                  <time datetime={strip.updatedDate.toISOString()}>
+                    {formatStripDate(strip.updatedDate).slice(5)}
+                  </time>
+                </>
+              ) : (
+                'Filed'
+              )}
+            </dd>
+          </div>
+        </>
+      )
+    }
+  </dl>
+</article>
+
+<style>
+  /* The aluminium holder is the strip's own frame; the paper slides within it. */
+  .strip {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4.75rem minmax(0, 1fr) auto;
+    background: var(--strip);
+    border: 1px solid var(--holder-dark);
+    border-left-width: 1px;
+    box-shadow: 0 1px 0 var(--holder-dark);
+    transition:
+      transform 260ms var(--ease-out),
+      box-shadow 260ms var(--ease-out);
+  }
+
+  .strip:hover,
+  .strip:focus-within {
+    transform: translateX(0.75rem);
+    box-shadow: var(--lift);
+  }
+
+  .strip > * + * {
+    border-left: 1px solid var(--rule);
+  }
+
+  .strip__seq {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .strip__number {
+    font-size: 1.375rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .strip__code {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  .strip__body {
+    display: grid;
+    align-content: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .strip__title {
+    font-size: 1.1875rem;
+    font-weight: 700;
+    line-height: 1.25;
+    max-width: 44ch;
+  }
+
+  .strip__title a {
+    text-decoration: none;
+  }
+
+  /* The whole strip is the click target; the title stays the accessible link. */
+  .strip__title a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .strip__title a:hover {
+    text-decoration: underline;
+  }
+
+  .strip__title a:focus-visible {
+    outline: none;
+  }
+
+  .strip:has(.strip__title a:focus-visible) {
+    outline: 2px solid var(--pencil);
+    outline-offset: 3px;
+  }
+
+  .strip__desc {
+    color: var(--ink-soft);
+    font-size: 0.9375rem;
+    max-width: 68ch;
+  }
+
+  .strip__fields {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .strip__field {
+    display: flex;
+    align-items: center;
+    padding: var(--space-2) var(--space-3);
+    white-space: nowrap;
+  }
+
+  .strip__field:nth-child(odd) {
+    border-right: 1px solid var(--rule);
+  }
+
+  .strip__field:nth-child(n + 3) {
+    border-top: 1px solid var(--rule);
+  }
+
+  .strip__field dd {
+    margin: 0;
+  }
+
+  .strip__field abbr {
+    text-decoration: none;
+  }
+
+  .strip__field--status {
+    color: var(--ink-soft);
+    font-weight: 700;
+  }
+
+  /* Compact: seq · title · date/lang, one line of fields. */
+  .strip--compact {
+    grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+  }
+
+  .strip--compact .strip__seq {
+    justify-content: center;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .strip--compact .strip__number {
+    font-size: 1rem;
+  }
+
+  .strip--compact .strip__body {
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .strip--compact .strip__title {
+    font-size: 0.9375rem;
+    line-height: 1.3;
+  }
+
+  .strip--compact .strip__fields {
+    grid-template-columns: auto;
+  }
+
+  .strip--compact .strip__field:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .strip--compact .strip__field:nth-child(n + 2) {
+    border-top: 1px solid var(--rule);
+  }
+
+  .strip--compact .strip__field {
+    justify-content: flex-end;
+    padding: var(--space-1) var(--space-3);
+    font-size: 0.75rem;
+  }
+
+  /* Inked: the one solid strip on the board. The pillar colour stays on the number cell. */
+  .strip--inked {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+
+  .strip--inked .strip__seq {
+    background: var(--strip);
+    color: var(--ink);
+  }
+
+  .strip--inked > * + * {
+    border-left-color: rgb(245 247 244 / 0.28);
+  }
+
+  .strip--inked .strip__field:nth-child(odd) {
+    border-right-color: rgb(245 247 244 / 0.28);
+  }
+
+  .strip--inked .strip__field:nth-child(n + 3) {
+    border-top-color: rgb(245 247 244 / 0.28);
+  }
+
+  .strip--inked .strip__desc {
+    color: #c9d0cb;
+  }
+
+  .strip--inked .strip__field--status {
+    color: #ff9c8f;
+  }
+
+  .strip--inked .strip__title {
+    font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+  }
+
+  .strip--inked:has(.strip__title a:focus-visible) {
+    outline-color: var(--ink);
+  }
+
+  @media (max-width: 40rem) {
+    .strip,
+    .strip--compact {
+      grid-template-columns: 3.25rem minmax(0, 1fr);
+    }
+
+    .strip__fields {
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(4, auto);
+      justify-content: start;
+      border-left: 0 !important;
+      border-top: 1px solid var(--rule);
+    }
+
+    .strip--inked .strip__fields {
+      border-top-color: rgb(245 247 244 / 0.28);
+    }
+
+    .strip__field,
+    .strip__field:nth-child(n) {
+      border-top: 0;
+      border-right: 1px solid var(--rule);
+      padding: var(--space-1) var(--space-3);
+    }
+
+    .strip--compact .strip__fields {
+      grid-template-columns: repeat(2, auto);
+    }
+
+    .strip__seq {
+      padding: var(--space-2);
+    }
+
+    .strip__number {
+      font-size: 1.0625rem;
+    }
+
+    .strip__code {
+      font-size: 0.6875rem;
+    }
+
+    .strip__body {
+      padding: var(--space-2) var(--space-3);
+    }
+
+    .strip:hover,
+    .strip:focus-within {
+      transform: translateX(0.375rem);
+    }
+  }
+</style>

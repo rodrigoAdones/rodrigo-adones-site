@@ -1,0 +1,145 @@
+---
+import { PILLARS } from '../lib/strips';
+---
+
+<section class="callsign" aria-labelledby="callsign-name">
+  <h1 id="callsign-name" class="callsign__name">
+    <span>Rodrigo</span>
+    <span>Adones</span>
+  </h1>
+
+  <div class="callsign__route">
+    <h2 class="callsign__label">Route</h2>
+    <ul>
+      {
+        PILLARS.map((pillar) => (
+          <li style={`--strip: var(--strip-${pillar.id})`}>
+            <a href={`#bay-${pillar.id}`}>
+              <span class="callsign__code">{pillar.code}</span>
+              <span>{pillar.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .callsign {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem);
+    background: var(--paper);
+    border: 1px solid var(--holder-dark);
+    box-shadow: 0 1px 0 var(--holder-dark);
+  }
+
+  .callsign__name {
+    display: grid;
+    align-content: end;
+    padding: var(--space-6) var(--space-5) var(--space-5);
+    font-size: clamp(3.25rem, 1rem + 13vw, 6rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  .callsign__route {
+    display: grid;
+    align-content: start;
+    border-left: 1px solid var(--rule);
+  }
+
+  .callsign__label {
+    padding: var(--space-2) var(--space-4);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .callsign__route ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .callsign__route li + li {
+    border-top: 1px solid var(--rule);
+  }
+
+  .callsign__route a {
+    display: grid;
+    grid-template-columns: 3.25rem 1fr;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4) var(--space-3) var(--space-3);
+    font-weight: 700;
+    font-size: 0.9375rem;
+    line-height: 1.25;
+    text-decoration: none;
+    transition: background-color 200ms var(--ease-out);
+  }
+
+  .callsign__route a:hover {
+    background: var(--strip);
+  }
+
+  .callsign__code {
+    display: grid;
+    place-items: center;
+    padding: var(--space-1) 0;
+    background: var(--strip);
+    border: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 48rem) {
+    .callsign {
+      grid-template-columns: 1fr;
+    }
+
+    .callsign__name {
+      padding: var(--space-5) var(--space-4) var(--space-4);
+    }
+
+    .callsign__route {
+      border-left: 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .callsign__route ul {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .callsign__route li + li {
+      border-top: 0;
+    }
+
+    .callsign__route li:nth-child(n + 3) {
+      border-top: 1px solid var(--rule);
+    }
+
+    .callsign__route li:nth-child(even) {
+      border-left: 1px solid var(--rule);
+    }
+
+    .callsign__route a {
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+      padding: var(--space-3);
+      font-size: 0.875rem;
+    }
+
+    .callsign__code {
+      justify-self: start;
+      padding: var(--space-1) var(--space-2);
+    }
+  }
+</style>
