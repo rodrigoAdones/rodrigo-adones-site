@@ -1,6 +1,6 @@
 # 0002: Homepage — Quiet Editorial Redesign
 
-**Status:** Draft
+**Status:** Done
 **Date:** 2026-10-01
 
 ## Context

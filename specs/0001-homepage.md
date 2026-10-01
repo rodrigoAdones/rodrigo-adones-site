@@ -3,6 +3,10 @@
 **Status:** Done
 **Date:** 2026-09-20
 
+> **Superseded visually by [0002](0002-homepage-quiet-editorial.md).** This spec's flight-progress-board
+> visual direction is replaced by Quiet editorial; BaseLayout, sample-data approach, and footer link
+> patterns carry forward.
+
 ## Context
 
 This is a portfolio site aimed at recruiters, engineers, software architects, and CTOs. The site

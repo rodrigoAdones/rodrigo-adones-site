@@ -1,441 +1,206 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-24T04:00:40+00:00",
+  "generatedAt": "2026-10-01T03:45:00+00:00",
   "title": "Design System: Rodrigo Adones",
   "extensions": {
     "colorMeta": {
-      "board": {
+      "ground": {
         "role": "neutral",
-        "displayName": "Enamel Board",
-        "canonical": "oklch(88.1% 0.011 150)",
-        "tonalRamp": [
-          "#080d09",
-          "#212722",
-          "#3e443f",
-          "#5d635e",
-          "#7e847f",
-          "#a0a7a1",
-          "#c4cbc5",
-          "#eaf1eb"
-        ]
-      },
-      "board-deep": {
-        "role": "neutral",
-        "displayName": "Deep Enamel",
-        "canonical": "oklch(83.3% 0.014 153)",
-        "tonalRamp": [
-          "#070d08",
-          "#202722",
-          "#3d443e",
-          "#5c645d",
-          "#7c857e",
-          "#9fa8a1",
-          "#c3ccc5",
-          "#e8f1ea"
-        ]
-      },
-      "holder": {
-        "role": "neutral",
-        "displayName": "Aluminium",
-        "canonical": "oklch(66.0% 0.014 160)",
-        "tonalRamp": [
-          "#060d09",
-          "#1f2723",
-          "#3c443f",
-          "#5b645e",
-          "#7b857f",
-          "#9ea8a2",
-          "#c2ccc6",
-          "#e7f2eb"
-        ]
-      },
-      "holder-dark": {
-        "role": "neutral",
-        "displayName": "Dark Aluminium",
-        "canonical": "oklch(50.8% 0.014 162)",
-        "tonalRamp": [
-          "#060d09",
-          "#1f2723",
-          "#3c4440",
-          "#5b645f",
-          "#7c8580",
-          "#9ea8a2",
-          "#c2ccc6",
-          "#e7f1ec"
-        ]
-      },
-      "paper": {
-        "role": "neutral",
-        "displayName": "Strip Paper",
-        "canonical": "oklch(97.4% 0.004 135)",
-        "tonalRamp": [
-          "#0a0c0a",
-          "#242623",
-          "#414240",
-          "#60625f",
-          "#818380",
-          "#a4a6a3",
-          "#c8cac7",
-          "#edefec"
-        ]
-      },
-      "paper-muted": {
-        "role": "neutral",
-        "displayName": "Faded Paper",
-        "canonical": "oklch(85.1% 0.010 155)",
-        "tonalRamp": [
-          "#080c09",
-          "#212723",
-          "#3e4440",
-          "#5d635f",
-          "#7e8480",
-          "#a0a7a2",
-          "#c4cbc6",
-          "#e9f1eb"
-        ]
+        "displayName": "Ground",
+        "canonical": "#FAF9F6"
       },
       "ink": {
         "role": "neutral",
-        "displayName": "Grease-Pencil Ink",
-        "canonical": "oklch(19.1% 0.000 90)",
-        "tonalRamp": [
-          "#0b0b0b",
-          "#252525",
-          "#424242",
-          "#616161",
-          "#828282",
-          "#a5a5a5",
-          "#c9c9c9",
-          "#eeeeee"
-        ]
+        "displayName": "Ink",
+        "canonical": "#202522"
       },
       "ink-soft": {
         "role": "neutral",
         "displayName": "Soft Ink",
-        "canonical": "oklch(35.2% 0.012 161)",
-        "tonalRamp": [
-          "#070d0a",
-          "#202723",
-          "#3d4440",
-          "#5c635f",
-          "#7d8580",
-          "#9fa7a3",
-          "#c3ccc7",
-          "#e8f1ec"
-        ]
+        "canonical": "#555B57"
       },
-      "pencil": {
+      "forest": {
         "role": "primary",
-        "displayName": "Red Grease Pencil",
-        "canonical": "oklch(49.7% 0.182 29)",
-        "tonalRamp": [
-          "#1f0000",
-          "#4d0001",
-          "#810103",
-          "#b11f18",
-          "#da4a3d",
-          "#fe7464",
-          "#ffb3a8",
-          "#ffe9e5"
-        ]
+        "displayName": "Forest",
+        "canonical": "#315A49"
       },
-      "pencil-on-ink": {
+      "forest-hover": {
         "role": "primary",
-        "displayName": "Pencil On Ink",
-        "canonical": "oklch(79.1% 0.121 28)",
-        "tonalRamp": [
-          "#1f0000",
-          "#4d0102",
-          "#751f19",
-          "#9a4138",
-          "#c06358",
-          "#e7867a",
-          "#ffb3a8",
-          "#ffe9e5"
-        ]
-      },
-      "strip-ai-delivery": {
-        "role": "secondary",
-        "displayName": "Buff Strip",
-        "canonical": "oklch(88.2% 0.072 91)",
-        "tonalRamp": [
-          "#100a00",
-          "#2f2400",
-          "#504009",
-          "#71602e",
-          "#93814f",
-          "#b6a470",
-          "#dbc893",
-          "#ffeebe"
-        ]
-      },
-      "strip-platform-dx": {
-        "role": "secondary",
-        "displayName": "Chart Blue Strip",
-        "canonical": "oklch(80.9% 0.053 249)",
-        "tonalRamp": [
-          "#000c1c",
-          "#0e273e",
-          "#2b445d",
-          "#4a647e",
-          "#6a85a1",
-          "#8ca8c5",
-          "#afcdeb",
-          "#e3f0fe"
-        ]
-      },
-      "strip-delivery-metrics": {
-        "role": "secondary",
-        "displayName": "Salmon Strip",
-        "canonical": "oklch(81.9% 0.075 40)",
-        "tonalRamp": [
-          "#1b0300",
-          "#421505",
-          "#633322",
-          "#855241",
-          "#a97361",
-          "#ce9582",
-          "#f5b9a5",
-          "#fee9e2"
-        ]
-      },
-      "strip-commerce-payments": {
-        "role": "secondary",
-        "displayName": "Pale Green Strip",
-        "canonical": "oklch(86.0% 0.086 123)",
-        "tonalRamp": [
-          "#080e00",
-          "#1f2a01",
-          "#39490a",
-          "#58692e",
-          "#788b4f",
-          "#9aae71",
-          "#bed394",
-          "#e3f9b9"
-        ]
+        "displayName": "Forest Hover",
+        "canonical": "#23443A"
       },
       "rule": {
         "role": "neutral",
-        "displayName": "Field Rule",
-        "canonical": "rgb(20 20 20 / 0.32)"
+        "displayName": "Rule",
+        "canonical": "#DCDDD8"
       }
+    }
+  },
+  "colors": {
+    "ground": "#FAF9F6",
+    "ink": "#202522",
+    "ink-soft": "#555B57",
+    "forest": "#315A49",
+    "forest-hover": "#23443A",
+    "rule": "#DCDDD8",
+    "input-disabled": "#EEEDE8",
+    "button-disabled": "#C5C6C1",
+    "button-disabled-text": "#6A6E6A",
+    "selection": "#D5E3DB"
+  },
+  "typography": {
+    "site-name": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "1.25rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
     },
-    "typographyMeta": {
-      "display": {
-        "displayName": "Display",
-        "purpose": "The callsign only."
-      },
-      "headline": {
-        "displayName": "Headline",
-        "purpose": "Section heads."
-      },
-      "title": {
-        "displayName": "Title",
-        "purpose": "Strip titles."
-      },
-      "title-inked": {
-        "displayName": "Title Inked",
-        "purpose": "The inked newest strip's title."
-      },
-      "body": {
-        "displayName": "Body",
-        "purpose": "Running prose."
-      },
-      "body-sm": {
-        "displayName": "Body Sm",
-        "purpose": "Strip and panel descriptions."
-      },
-      "numeral": {
-        "displayName": "Numeral",
-        "purpose": "Zero-padded strip sequence numbers."
-      },
-      "field": {
-        "displayName": "Field",
-        "purpose": "Field cells, the now rule, counts, the domain."
-      },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Pillar codes, in-strip column headers, form labels."
-      }
+    "display": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)",
+      "fontWeight": 600,
+      "lineHeight": 1.2,
+      "letterSpacing": "-0.02em"
     },
-    "shadows": [
-      {
-        "name": "holder-rim",
-        "value": "0 1px 0 var(--holder-dark)",
-        "purpose": "Resting bottom rim on every paper surface: strips, callsign, subscribe strip."
-      },
-      {
-        "name": "lift",
-        "value": "0 0.5rem 1rem -0.5rem rgb(20 20 20 / 0.45)",
-        "purpose": "A strip pulled out on hover/focus, and the active nav tab."
-      },
-      {
-        "name": "active-mark",
-        "value": "inset 0 -3px 0 var(--pencil)",
-        "purpose": "Red pencil mark along the bottom of the active nav tab."
-      }
-    ],
-    "motion": [
-      {
-        "name": "ease-out",
-        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
-        "purpose": "All state transitions."
-      },
-      {
-        "name": "strip-slide",
-        "value": "260ms",
-        "purpose": "Strip and tab slide-out (translateX 0.75rem; 0.375rem under 40rem; tabs slide down under 60rem)."
-      },
-      {
-        "name": "fill-change",
-        "value": "200ms",
-        "purpose": "Button and route-row background changes."
-      },
-      {
-        "name": "reduced-motion",
-        "value": "transition-duration: 0.01ms",
-        "purpose": "Applied globally under prefers-reduced-motion: reduce."
-      }
-    ],
-    "breakpoints": [
-      {
-        "name": "strip-wrap",
-        "value": "40rem"
-      },
-      {
-        "name": "stack",
-        "value": "48rem"
-      },
-      {
-        "name": "rail-to-bar",
-        "value": "60rem"
-      },
-      {
-        "name": "bays-single",
-        "value": "72rem"
-      }
-    ]
+    "headline": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "1.5rem",
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "letterSpacing": "-0.015em"
+    },
+    "title": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "1.25rem",
+      "fontWeight": 600,
+      "lineHeight": 1.3,
+      "letterSpacing": "-0.015em"
+    },
+    "body": {
+      "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "fontSize": "1rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    },
+    "body-lg": {
+      "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "fontSize": "1.125rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    },
+    "meta": {
+      "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "fontSize": "0.875rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    }
+  },
+  "rounded": {
+    "none": "0px",
+    "control": "3px"
+  },
+  "spacing": {
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "5": "1.5rem",
+    "6": "2rem",
+    "7": "3rem",
+    "8": "4.5rem"
+  },
+  "layout": {
+    "frame": "60rem",
+    "inner": "43rem",
+    "dateCol": "8.5rem",
+    "indent": "8rem",
+    "gutter": "1rem",
+    "narrowBreakpoint": "40rem"
   },
   "components": [
     {
-      "name": "Strip",
-      "kind": "card",
-      "refersTo": "strip",
-      "description": "A post as a paper strip: sequence cell, title and description, 2x2 field grid; slides out of its holder on hover and focus.",
-      "html": "<article class=\"ds-strip\" style=\"--strip: var(--strip-platform-dx)\"><div class=\"ds-strip__seq\"><span class=\"ds-strip__num\">002</span><span class=\"ds-strip__code\">PDX</span></div><div class=\"ds-strip__body\"><h3 class=\"ds-strip__title\"><a href=\"#\">La plataforma interna es un producto</a></h3><p class=\"ds-strip__desc\">Treating the internal platform as a product with users.</p></div><dl class=\"ds-strip__fields\"><div><dd>2026-08-19</dd></div><div><dd>ES</dd></div><div><dd>6 MIN</dd></div><div class=\"ds-strip__status\"><dd>FILED</dd></div></dl></article>",
-      "css": ".ds-strip{position:relative;display:grid;grid-template-columns:4.75rem minmax(0,1fr) auto;background:var(--strip);color:var(--ink);border:1px solid var(--holder-dark);box-shadow:0 1px 0 var(--holder-dark);font-family: var(--font-sans);transition:transform 260ms var(--ease-out),box-shadow 260ms var(--ease-out)}.ds-strip:hover,.ds-strip:focus-within{transform:translateX(0.75rem);box-shadow:var(--lift)}.ds-strip>*+*{border-left:1px solid var(--rule)}.ds-strip__seq{display:flex;flex-direction:column;justify-content:space-between;gap:0.5rem;padding:0.75rem;font-family: var(--font-mono);font-variant-numeric:tabular-nums}.ds-strip__num{font-size:1.375rem;font-weight:700;line-height:1;letter-spacing:-0.02em}.ds-strip__code{font-size:0.75rem;letter-spacing:0.06em}.ds-strip__body{display:grid;align-content:center;gap:0.5rem;padding:0.75rem 1rem}.ds-strip__title{margin:0;font-size:1.1875rem;font-weight:700;line-height:1.25}.ds-strip__title a{color:inherit;text-decoration:none}.ds-strip__title a::after{content:'';position:absolute;inset:0}.ds-strip__title a:hover{text-decoration:underline}.ds-strip__title a:focus-visible{outline:none}.ds-strip:has(a:focus-visible){outline:2px solid var(--pencil);outline-offset:3px}.ds-strip__desc{margin:0;color:var(--ink-soft);font-size:0.9375rem}.ds-strip__fields{display:grid;grid-template-columns:repeat(2,auto);margin:0;font-family: var(--font-mono);font-size:0.8125rem;letter-spacing:0.04em;text-transform:uppercase;font-variant-numeric:tabular-nums}.ds-strip__fields>div{display:flex;align-items:center;padding:0.5rem 0.75rem}.ds-strip__fields dd{margin:0}.ds-strip__fields>div:nth-child(odd){border-right:1px solid var(--rule)}.ds-strip__fields>div:nth-child(n+3){border-top:1px solid var(--rule)}.ds-strip__status{color:var(--ink-soft);font-weight:700}"
-    },
-    {
-      "name": "Inked Strip",
-      "kind": "card",
-      "refersTo": "strip-inked",
-      "description": "The one solid-inked strip on the board: the newest post. Pillar colour stays on the sequence cell; status in pencil-on-ink.",
-      "html": "<article class=\"ds-inked\"><div class=\"ds-inked__seq\"><span class=\"ds-inked__num\">003</span><span class=\"ds-inked__code\">DLM</span></div><div class=\"ds-inked__body\"><h3 class=\"ds-inked__title\"><a href=\"#\">Métricas DORA sin política</a></h3><p class=\"ds-inked__desc\">Measuring deployment frequency without ranking teams.</p></div><dl class=\"ds-inked__fields\"><div><dd>2026-09-16</dd></div><div><dd>ES</dd></div><div><dd>7 MIN</dd></div><div class=\"ds-inked__status\"><dd>UPD 09-21</dd></div></dl></article>",
-      "css": ".ds-inked{position:relative;display:grid;grid-template-columns:4.75rem minmax(0,1fr) auto;background:var(--ink);color:var(--paper);border:1px solid var(--ink);font-family: var(--font-sans);transition:transform 260ms var(--ease-out),box-shadow 260ms var(--ease-out)}.ds-inked:hover,.ds-inked:focus-within{transform:translateX(0.75rem);box-shadow:var(--lift)}.ds-inked>*+*{border-left:1px solid rgb(245 247 244 / 0.28)}.ds-inked__seq{display:flex;flex-direction:column;justify-content:space-between;gap:0.5rem;padding:0.75rem;background:var(--strip-delivery-metrics);color:var(--ink);font-family: var(--font-mono);}.ds-inked__num{font-size:1.375rem;font-weight:700;line-height:1}.ds-inked__code{font-size:0.75rem;letter-spacing:0.06em}.ds-inked__body{display:grid;gap:0.5rem;padding:0.75rem 1rem}.ds-inked__title{margin:0;font-size:clamp(1.25rem,1rem + 1vw,1.625rem);font-weight:700;line-height:1.25}.ds-inked__title a{color:inherit;text-decoration:none}.ds-inked__title a:hover{text-decoration:underline}.ds-inked__title a:focus-visible{outline:2px solid var(--paper);outline-offset:3px}.ds-inked__desc{margin:0;color:#c9d0cb;font-size:0.9375rem}.ds-inked__fields{display:grid;grid-template-columns:repeat(2,auto);margin:0;font-family: var(--font-mono);font-size:0.8125rem;letter-spacing:0.04em;text-transform:uppercase}.ds-inked__fields>div{padding:0.5rem 0.75rem}.ds-inked__fields dd{margin:0}.ds-inked__fields>div:nth-child(odd){border-right:1px solid rgb(245 247 244 / 0.28)}.ds-inked__fields>div:nth-child(n+3){border-top:1px solid rgb(245 247 244 / 0.28)}.ds-inked__status{color:#ff9c8f;font-weight:700}"
-    },
-    {
-      "name": "Pillar Bay",
-      "kind": "custom",
-      "refersTo": "bay-plate",
-      "description": "Paper plate with a pillar code chip over a grey holder field of three ruled slots; empty slots stay visible.",
-      "html": "<section class=\"ds-bay\" style=\"--strip: var(--strip-commerce-payments)\"><header class=\"ds-bay__plate\"><span class=\"ds-bay__code\">C&amp;P</span><h3 class=\"ds-bay__name\"><a href=\"#\">Commerce &amp; payments</a></h3><span class=\"ds-bay__count\">0 STRIPS</span></header><ol class=\"ds-bay__rack\"><li class=\"ds-bay__slot\">No posts filed under this pillar yet.</li><li class=\"ds-bay__slot\"></li><li class=\"ds-bay__slot\"></li></ol></section>",
-      "css": ".ds-bay{font-family: var(--font-sans);color:var(--ink)}.ds-bay__plate{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:0.75rem;padding:0.75rem;background:var(--paper);border:1px solid var(--holder-dark);border-bottom:0}.ds-bay__code{padding:0.25rem 0.5rem;background:var(--strip);border:1px solid var(--rule);font-family: var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:0.04em}.ds-bay__name{margin:0;font-size:1.125rem;line-height:1.2}.ds-bay__name a{color:inherit;text-underline-offset:0.2em;text-decoration-thickness:1px;text-decoration-color:rgb(20 20 20 / 0.5)}.ds-bay__name a:hover{text-decoration-color:currentColor}.ds-bay__name a:focus-visible{outline:2px solid var(--pencil);outline-offset:3px}.ds-bay__count{font-family: var(--font-mono);font-size:0.75rem;letter-spacing:0.04em;font-variant-numeric:tabular-nums}.ds-bay__rack{display:grid;grid-auto-rows:minmax(3.5rem,auto);gap:3px;margin:0;padding:3px;list-style:none;background:var(--holder);border:1px solid var(--holder-dark)}.ds-bay__slot{display:grid;place-items:center;padding:0.5rem 1rem;background:repeating-linear-gradient(180deg,transparent 0 0.875rem,rgb(20 20 20 / 0.1) 0.875rem calc(0.875rem + 1px)),var(--board-deep);color:var(--ink-soft);font-size:0.875rem;text-align:center}"
-    },
-    {
-      "name": "Code Chip",
-      "kind": "chip",
-      "refersTo": "code-chip",
-      "description": "Pillar code tag; the only place pillar colour appears outside a strip.",
-      "html": "<span class=\"ds-chip\" style=\"--strip: var(--strip-ai-delivery)\">AID</span> <span class=\"ds-chip\" style=\"--strip: var(--strip-platform-dx)\">PDX</span> <span class=\"ds-chip\" style=\"--strip: var(--strip-delivery-metrics)\">DLM</span> <span class=\"ds-chip\" style=\"--strip: var(--strip-commerce-payments)\">C&amp;P</span>",
-      "css": ".ds-chip{display:inline-block;padding:0.25rem 0.5rem;background:var(--strip);border:1px solid var(--rule);color:var(--ink);font-family: var(--font-mono);font-size:0.75rem;font-weight:700;letter-spacing:0.04em}"
-    },
-    {
-      "name": "Now Rule",
-      "kind": "custom",
-      "refersTo": "now-rule",
-      "description": "The one red line on the board: build time in UTC and the strip count.",
-      "html": "<p class=\"ds-now\"><span>Board as of <time>2026-09-24 0355Z</time></span><span>3 strips filed</span></p>",
-      "css": ".ds-now{display:flex;flex-wrap:wrap;justify-content:space-between;gap:0.5rem 1.5rem;margin:0;padding-bottom:0.5rem;border-bottom:2px solid var(--pencil);color:var(--pencil);font-family: var(--font-mono);font-size:0.8125rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;font-variant-numeric:tabular-nums}"
+      "name": "Site Name",
+      "kind": "link",
+      "refersTo": "site-name",
+      "description": "Serif site name linking home.",
+      "html": "<a class=\"ds-name\" href=\"/\">Rodrigo Adones</a>",
+      "css": ".ds-name{font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:var(--ink);text-decoration:none}.ds-name:hover{text-decoration:underline}.ds-name:focus-visible{outline:2px solid var(--forest);outline-offset:3px}"
     },
     {
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "Ink block, square; turns red pencil on hover.",
+      "description": "Forest fill, 3px radius; darker on hover; greyed when disabled.",
       "html": "<button class=\"ds-btn\">Subscribe</button>",
-      "css": ".ds-btn{padding:0.75rem 1.5rem;background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:0;font-family: var(--font-sans);font-size:1rem;font-weight:700;cursor:pointer;transition:background-color 200ms var(--ease-out)}.ds-btn:hover{background:var(--pencil);border-color:var(--pencil)}.ds-btn:focus-visible{outline:2px solid var(--pencil);outline-offset:3px}.ds-btn:disabled{background:var(--holder);border-color:var(--holder);color:var(--ink);cursor:not-allowed}"
+      "css": ".ds-btn{padding:0.75rem 1.5rem;background:var(--forest);color:var(--ground);border:1px solid var(--forest);border-radius:3px;font-family:var(--font-sans);font-size:1rem;font-weight:600;cursor:pointer}.ds-btn:hover{background:var(--forest-hover);border-color:var(--forest-hover)}.ds-btn:focus-visible{outline:2px solid var(--forest);outline-offset:3px}.ds-btn:disabled{background:#c5c6c1;border-color:#c5c6c1;color:#6a6e6a;cursor:not-allowed}"
     },
     {
       "name": "Email Field",
       "kind": "input",
       "refersTo": "input",
-      "description": "Mono label over a board-coloured square field closed by the ink button.",
-      "html": "<div class=\"ds-field\"><label class=\"ds-field__label\" for=\"ds-email\">Email address</label><div class=\"ds-field__row\"><input class=\"ds-field__input\" id=\"ds-email\" type=\"email\" placeholder=\"you@company.com\"><button class=\"ds-field__btn\">Subscribe</button></div></div>",
-      "css": ".ds-field{display:grid;gap:0.5rem;font-family: var(--font-sans);}.ds-field__label{font-family: var(--font-mono);font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft)}.ds-field__row{display:grid;grid-template-columns:minmax(0,1fr) auto}.ds-field__input{min-width:0;padding:0.75rem;background:var(--board);border:1px solid var(--holder-dark);border-right:0;border-radius:0;color:var(--ink);font-family: var(--font-mono);font-size:1rem}.ds-field__input::placeholder{color:#59625c;font-family: var(--font-sans);}.ds-field__input:focus-visible{outline:2px solid var(--pencil);outline-offset:0;background:var(--paper)}.ds-field__btn{padding:0.75rem 1.5rem;background:var(--ink);color:var(--paper);border:1px solid var(--ink);border-radius:0;font:inherit;font-weight:700;cursor:pointer;transition:background-color 200ms var(--ease-out)}.ds-field__btn:hover{background:var(--pencil);border-color:var(--pencil)}.ds-field__btn:focus-visible{outline:2px solid var(--pencil);outline-offset:3px}"
+      "description": "Visible label, email input with 3px radius beside the subscribe button.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field__label\" for=\"ds-email\">Email address</label><div class=\"ds-field__row\"><input class=\"ds-field__input\" id=\"ds-email\" type=\"email\" autocomplete=\"email\"><button class=\"ds-field__btn\">Subscribe</button></div></div>",
+      "css": ".ds-field{display:grid;gap:0.5rem;font-family:var(--font-sans)}.ds-field__label{color:var(--ink-soft);font-size:0.875rem}.ds-field__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0.5rem}.ds-field__input{min-width:0;padding:0.75rem;background:var(--ground);border:1px solid var(--rule);border-radius:3px;color:var(--ink);font:inherit}.ds-field__input:focus-visible{outline:2px solid var(--forest);outline-offset:3px}.ds-field__btn{padding:0.75rem 1.5rem;background:var(--forest);color:var(--ground);border:1px solid var(--forest);border-radius:3px;font:inherit;font-weight:600;cursor:pointer}.ds-field__btn:hover{background:var(--forest-hover)}"
     },
     {
-      "name": "Rail Navigation",
+      "name": "Primary Nav",
       "kind": "nav",
-      "refersTo": "nav-tab",
-      "description": "Blank-strip tabs; the current tab is pulled out onto the board with a red pencil mark.",
-      "html": "<nav class=\"ds-rail\"><a class=\"ds-rail__tab\" href=\"#\" aria-current=\"page\">Home</a><a class=\"ds-rail__tab\" href=\"#\">Articles</a><a class=\"ds-rail__tab\" href=\"#\">About</a></nav>",
-      "css": ".ds-rail{display:grid;gap:0.5rem;width:12rem;padding:1rem;background:var(--board-deep);border-right:2px solid var(--holder)}.ds-rail__tab{display:block;padding:0.75rem 1rem;background:var(--board);border:1px solid var(--holder);color:var(--ink);font-family: var(--font-sans);font-weight:700;font-size:1.0625rem;text-decoration:none;transition:transform 260ms var(--ease-out),background-color 260ms var(--ease-out)}.ds-rail__tab:hover{transform:translateX(0.375rem);background:var(--paper)}.ds-rail__tab:focus-visible{outline:2px solid var(--pencil);outline-offset:3px}.ds-rail__tab[aria-current='page']{background:var(--paper);border-color:var(--ink);transform:translateX(0.75rem);box-shadow:inset 0 -3px 0 var(--pencil),var(--lift)}"
+      "refersTo": "nav",
+      "description": "Exactly About and Blog; English chrome.",
+      "html": "<nav class=\"ds-nav\" lang=\"en\" aria-label=\"Primary\"><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a></nav>",
+      "css": ".ds-nav{display:flex;gap:1.5rem;font-family:var(--font-sans)}.ds-nav a{color:var(--ink);font-weight:500;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current='page']{text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid var(--forest);outline-offset:3px}"
     }
   ],
   "narrative": {
-    "northStar": "The Flight Progress Board",
-    "overview": "The site is a strip board in a daylight operations room. A grey-green enamel board carries aluminium holders; posts are paper strips racked in them, colour-coded by pillar, ruled into field cells, and read against one red \"now\" rule. The grammar of the board carries only real post metadata: sequence numbers, pillar codes, dates, language, reading time, status. There is no aviation costume: no planes, no radar, no cockpit chrome.\n\nDensity is operational rather than decorative. Everything sits on a hairline-ruled grid with square corners; hierarchy comes from paper against board, one solid-inked strip against many coloured ones, and one red line against everything else. Colour is tonal and economical: four soft pillar tints, a family of greens and greys for the board, near-black ink, and a single red pencil.\n\nThe world is light-only. It is set in a daylight office or on a phone in hand, not in a darkened control room; there is no dark mode.",
+    "northStar": "Quiet Editorial",
+    "overview": "A calm reading page for bilingual engineering writing. The homepage says who you are, states a thesis in one line, lists the four pillars, shows the latest three articles, and offers an honest newsletter stub. Hierarchy comes from Source Serif 4 headings, an indented inner column, and hairline rules — not cards, boards, or motion.",
     "keyCharacteristics": [
-      "Enamel board, aluminium holders, paper strips, grease-pencil ink, one red pencil.",
-      "Square corners and 1px ruled field cells everywhere.",
-      "Pillar colour appears only on strips and code chips.",
-      "Exactly one solid-inked strip on the board: the newest post.",
-      "Sequence numbers are permanent (counted from the oldest post), zero-padded, monospaced.",
-      "The signature motion: a strip slides partway out of its holder on hover and focus."
+      "Ground #FAF9F6, ink #202522, soft ink #555B57, forest #315A49, rules #DCDDD8.",
+      "Source Serif 4 for site name and headings/titles; system sans for everything else.",
+      "Frame ≈ 60rem; inner ≈ 43rem indented ≈ 8rem; date column ≈ 8.5rem.",
+      "Square layout; 3px radius only on form controls.",
+      "Light only; no transitions or animations.",
+      "Chrome English; per-post lang on titles and descriptions."
     ],
     "rules": [
       {
-        "name": "The One Red Pencil Rule",
-        "body": "At rest, red appears in exactly three places: the now rule, the active nav mark, and the inked strip's status cell (as pencil-on-ink). Beyond that it is state feedback only (focus ring, caret, button hover). Status cells on coloured strips use ink-soft, never red.",
-        "section": "colors"
+        "name": "The Serif Speaks Rule",
+        "body": "Source Serif 4 for the site name, h1, h2, and article titles. System sans for body, meta, nav, and forms.",
+        "section": "typography"
       },
       {
-        "name": "The Pillar Colour Rule",
-        "body": "Pillar colour belongs to strips and code chips. No pillar-coloured box ever wraps a pillar-coloured strip; bays are paper plates over neutral grey holder fields.",
+        "name": "The Forest Accent Rule",
+        "body": "Forest is for links, the primary button, and the focus ring. Soft ink carries secondary prose; never invent a third accent.",
         "section": "colors"
       },
       {
         "name": "The Daylight Rule",
-        "body": "Light-only. `color-scheme: light`; no dark theme.",
+        "body": "Light-only. color-scheme: light; no dark theme.",
         "section": "colors"
       },
       {
-        "name": "The Sans Speaks, Mono Records Rule",
-        "body": "B612 sans for all prose, headings, titles, links and buttons. B612 Mono only for dates, codes, counts, sequence numbers, field cells, and the domain. A sentence set in mono is a bug.",
-        "section": "typography"
+        "name": "The Still Page Rule",
+        "body": "No CSS transitions or animations on the homepage. Hover is underline or a darker button fill only.",
+        "section": "elevation"
       },
       {
-        "name": "The Pulled Strip Rule",
-        "body": "Nothing floats at rest. A strip lifts only when it slides out (0.75rem right, 0.375rem under 40rem; 260ms, ease-out cubic-bezier(0.16, 1, 0.3, 1)), and the lift comes with it.",
-        "section": "elevation"
+        "name": "The Frame and Inner Rule",
+        "body": "Section rules span the frame; article rules span the inner column. Indent shrinks before the gutter collapses below 40rem.",
+        "section": "layout"
       }
     ],
     "dos": [
-      "**Do** keep every corner square and every division a 1px rule.",
-      "**Do** keep the red pencil to the now rule, the active nav mark, and the inked strip's status; everywhere else it is focus or hover state only.",
-      "**Do** use pencil-on-ink (#ff9c8f) for red on the inked strip, and ink-soft for status on coloured strips.",
-      "**Do** set prose in B612 and values (dates, codes, counts, sequence numbers, fields, the domain) in B612 Mono with tabular numerals.",
-      "**Do** ink exactly one strip: the newest post.",
-      "**Do** show empty holder slots in bays so the rack's capacity stays visible.",
-      "**Do** carry only real post metadata in fields: sequence, pillar code, date, language, reading time, status."
+      "**Do** keep chrome lang=en and put lang on post title/description.",
+      "**Do** announce language badges as Spanish/English to assistive tech.",
+      "**Do** explain disabled newsletter state in text, not colour alone.",
+      "**Do** keep the visible [Placeholder] marker while intro copy is provisional.",
+      "**Do** prefer rules and whitespace over cards, pills, and stat strips."
     ],
     "donts": [
-      "**Don't** wrap a pillar-coloured strip in a pillar-coloured box; bays are paper plates over grey holder fields.",
-      "**Don't** use the red pencil as a decorative accent, a heading colour, or a status colour on coloured strips.",
-      "**Don't** add planes, radar sweeps, cockpit chrome, or invented aviation data; the board grammar is for post metadata only.",
-      "**Don't** add a dark mode.",
-      "**Don't** add resting shadows; lift exists only for a pulled strip or the active tab.",
-      "**Don't** renumber strips; sequence numbers count from the oldest post and never change."
+      "**Don't** restore B612, board enamel, pillar strip paints, sequence numbers, or slide-out motion.",
+      "**Don't** add dark mode, client JS, or third-party font origins.",
+      "**Don't** put cards in the hero or first viewport clutter beyond brand, role, thesis, pillars, and the start of latest articles.",
+      "**Don't** use purple-on-white, cream-and-terracotta, or broadsheet newspaper defaults."
     ]
   }
 }

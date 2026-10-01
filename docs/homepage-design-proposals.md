@@ -1,6 +1,6 @@
 # Homepage design proposals
 
-Six directions for Rodrigo Adones's portfolio homepage. These are design proposals, not changes to the published page. The site name links home; the menu contains exactly **About** and **Blog**. All interface and published article content is English.
+Six directions for Rodrigo Adones's portfolio homepage. These are design proposals, not changes to the published page. The site name links home; the menu contains exactly **About** and **Blog**. Chrome is English; posts may be English or Spanish (ADR 0006).
 
 ## Visual mockups
 
@@ -204,7 +204,7 @@ NEWSLETTER  Email address [________________] [Subscribe]
 - Keep text contrast at least 4.5:1 for normal text, preserve reading order at narrow widths and zoom, and avoid text over images.
 - Use a descriptive homepage title and meta description, canonical URL, and crawlable links to `/about/`, `/blog/`, and the three real article URLs. Use actual publication dates and avoid fabricated article details or structured data.
 - Use no transitions, animated hover effects, client-side navigation, hidden-on-hover information, or layout shifts between routes. Focus indication remains visible for keyboard users.
-- The repo currently plans bilingual posts in ADR 0006 and contains Spanish sample titles. An English-only implementation should update that decision and replace those samples before publication.
+- The repo plans bilingual posts in ADR 0006 and already carries Spanish sample titles on the homepage. Keep chrome English and announce language on each entry.
 
 **Recommendation:** Proposal 1 is the clearest starting point. Proposal 6 is the smallest visual departure from the existing homepage. The choice between them is primarily whether the site should feel like an editorial journal or retain its operational visual identity.
 

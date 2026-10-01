@@ -15,66 +15,60 @@ const { title, description, lang = 'en' } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
-    <link rel="preload" href="/fonts/b612-700.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/b612-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <slot />
   </body>
 </html>
 
 <style is:global>
   @font-face {
-    font-family: 'B612';
+    font-family: 'Source Serif 4';
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/b612-400.woff2') format('woff2');
+    src: url('/fonts/source-serif-4-400.woff2') format('woff2');
   }
   @font-face {
-    font-family: 'B612';
-    font-weight: 700;
+    font-family: 'Source Serif 4';
+    font-weight: 600;
     font-display: swap;
-    src: url('/fonts/b612-700.woff2') format('woff2');
-  }
-  @font-face {
-    font-family: 'B612 Mono';
-    font-weight: 400;
-    font-display: swap;
-    src: url('/fonts/b612-mono-400.woff2') format('woff2');
-  }
-  @font-face {
-    font-family: 'B612 Mono';
-    font-weight: 700;
-    font-display: swap;
-    src: url('/fonts/b612-mono-700.woff2') format('woff2');
+    src: url('/fonts/source-serif-4-600.woff2') format('woff2');
   }
 
   :root {
-    /* Board: enamelled strip bay, aluminium holders, paper strips, grease pencil. */
-    --board: #d3dad4;
-    --board-deep: #c2cbc4;
-    --holder: #8b958f;
-    --holder-dark: #5f6863;
-    --paper: #f5f7f4;
-    --ink: #141414;
-    --ink-soft: #363d39;
-    --pencil: #b3211a;
+    --ground: #faf9f6;
+    --ink: #202522;
+    --ink-soft: #555b57;
+    --forest: #315a49;
+    --forest-hover: #23443a;
+    --rule: #dcddd8;
 
-    /* One strip colour per pillar (ADR 0002 closed tag list). */
-    --strip-ai-delivery: #ead7a2;
-    --strip-platform-dx: #a7c4e2;
-    --strip-delivery-metrics: #efb4a0;
-    --strip-commerce-payments: #c6db9c;
+    --font-serif: 'Source Serif 4', 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+    --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-    --rule: rgb(20 20 20 / 0.32);
-    --lift: 0 0.5rem 1rem -0.5rem rgb(20 20 20 / 0.45);
-    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-
-    --font-sans: 'B612', 'Helvetica Neue', Arial, sans-serif;
-    --font-mono: 'B612 Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --frame: 60rem;
+    --inner: 43rem;
+    --date-col: 8.5rem;
+    --gutter: 1rem;
+    --indent: 8rem;
 
     --space-1: 0.25rem;
     --space-2: 0.5rem;
@@ -86,7 +80,6 @@ const { title, description, lang = 'en' } = Astro.props;
     --space-8: 4.5rem;
 
     color-scheme: light;
-    scrollbar-color: var(--holder) var(--board);
   }
 
   *,
@@ -102,12 +95,11 @@ const { title, description, lang = 'en' } = Astro.props;
 
   body {
     margin: 0;
-    background: var(--board);
+    background: var(--ground);
     color: var(--ink);
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.5;
-    caret-color: var(--pencil);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -133,13 +125,30 @@ const { title, description, lang = 'en' } = Astro.props;
   }
 
   ::selection {
-    background: var(--strip-ai-delivery);
+    background: #d5e3db;
     color: var(--ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--pencil);
+    outline: 2px solid var(--forest);
     outline-offset: 3px;
+  }
+
+  .skip-link {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 10;
+    padding: var(--space-2) var(--space-3);
+    background: var(--ground);
+    color: var(--forest);
+    font-weight: 600;
+    text-decoration: none;
+    transform: translateY(-200%);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
   }
 
   .visually-hidden {
@@ -151,11 +160,23 @@ const { title, description, lang = 'en' } = Astro.props;
     white-space: nowrap;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      transition-duration: 0.01ms !important;
+  /* Shared frame / indented inner column (specs/0002). */
+  .frame {
+    width: 100%;
+    max-width: var(--frame);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  .inner {
+    width: 100%;
+    max-width: var(--inner);
+    margin-left: min(var(--indent), max(0rem, calc(100% - var(--inner))));
+  }
+
+  @media (max-width: 40rem) {
+    :root {
+      --indent: 0rem;
     }
   }
 </style>

@@ -1,0 +1,85 @@
+---
+import ArticleEntry from './ArticleEntry.astro';
+import type { Entry } from '../lib/home';
+
+interface Props {
+  entries: Entry[];
+  linked?: boolean;
+}
+
+const { entries, linked = true } = Astro.props;
+---
+
+<section class="latest frame" aria-labelledby="latest-heading">
+  <div class="latest__head inner">
+    <h2 id="latest-heading">Latest articles</h2>
+    {
+      entries.length > 0 && (
+        <a class="latest__all" href="/blog/">
+          View all articles <span aria-hidden="true">→</span>
+        </a>
+      )
+    }
+  </div>
+
+  {
+    entries.length === 0 ? (
+      <p class="latest__empty inner">No articles published yet.</p>
+    ) : (
+      <ol class="latest__list inner">
+        {entries.map((entry) => (
+          <li>
+            <ArticleEntry entry={entry} linked={linked} />
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</section>
+
+<style>
+  .latest {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--rule);
+  }
+
+  .latest__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-2);
+  }
+
+  .latest__head h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .latest__all {
+    color: var(--forest);
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  .latest__all:hover {
+    text-decoration: underline;
+  }
+
+  .latest__empty {
+    padding-block: var(--space-5);
+    color: var(--ink-soft);
+  }
+
+  .latest__list {
+    padding: 0;
+    list-style: none;
+  }
+
+  .latest__list > li + li {
+    border-top: 1px solid var(--rule);
+  }
+</style>

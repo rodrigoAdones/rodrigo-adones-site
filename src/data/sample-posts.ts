@@ -1,7 +1,7 @@
-// SAMPLE DATA — placeholder posts that validate the homepage design (specs/0001-homepage.md).
+// SAMPLE DATA — placeholder posts that validate the homepage design (specs/0002-homepage-quiet-editorial.md).
 // Shaped like the ADR 0002 frontmatter; replaced by getPublishedPosts() in the Articles spec.
 // Titles and descriptions are illustrative, not published writing.
-import type { PostSummary } from '../lib/strips';
+import type { PostSummary } from '../lib/home';
 
 export const IS_SAMPLE_DATA = true;
 
