@@ -1,0 +1,69 @@
+---
+interface Props {
+  current?: 'about' | 'blog' | 'home';
+}
+
+const { current = 'home' } = Astro.props;
+
+const links = [
+  { href: '/about/', label: 'About', id: 'about' as const },
+  { href: '/blog/', label: 'Blog', id: 'blog' as const },
+];
+---
+
+<header class="site-header frame">
+  <a class="site-header__name" href="/">Rodrigo Adones</a>
+  <nav class="site-header__nav" lang="en" aria-label="Primary">
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-6);
+    padding-block: var(--space-5);
+  }
+
+  .site-header__name {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    text-decoration: none;
+  }
+
+  .site-header__name:hover {
+    text-decoration: underline;
+  }
+
+  .site-header__nav ul {
+    display: flex;
+    gap: var(--space-5);
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-header__nav a {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .site-header__nav a:hover,
+  .site-header__nav a[aria-current='page'] {
+    text-decoration: underline;
+  }
+</style>

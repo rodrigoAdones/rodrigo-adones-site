@@ -1,0 +1,157 @@
+---
+// TODO(ADR 0007): set to the newsletter provider's plain-POST endpoint once one is chosen.
+// While empty, the form renders disabled so nothing posts to a dead URL.
+const NEWSLETTER_ACTION = '';
+const isOpen = NEWSLETTER_ACTION !== '';
+---
+
+<section class="subscribe frame" aria-labelledby="subscribe-heading">
+  <div class="subscribe__inner inner">
+    <h2 id="subscribe-heading">Get new articles by email</h2>
+    <p class="subscribe__lede">
+      Every new article, sent in full to your inbox. Posts are in English and Spanish.
+    </p>
+
+    <form class="subscribe__form" action={isOpen ? NEWSLETTER_ACTION : undefined} method="post">
+      <fieldset disabled={!isOpen}>
+        <legend class="visually-hidden">Newsletter subscription</legend>
+        <label for="subscribe-email">Email address</label>
+        <div class="subscribe__row">
+          <input
+            id="subscribe-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            aria-describedby={isOpen ? undefined : 'subscribe-status'}
+          />
+          <button type="submit">Subscribe</button>
+        </div>
+      </fieldset>
+      {
+        !isOpen && (
+          <p id="subscribe-status" class="subscribe__status">
+            The newsletter opens with the first article. Until then, follow along by{' '}
+            <a href="/rss.xml">RSS</a>.
+          </p>
+        )
+      }
+    </form>
+  </div>
+</section>
+
+<style>
+  .subscribe {
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--rule);
+  }
+
+  .subscribe__inner {
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .subscribe h2 {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+  }
+
+  .subscribe__lede {
+    color: var(--ink-soft);
+    max-width: 40rem;
+  }
+
+  .subscribe__form {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
+  }
+
+  fieldset {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
+  }
+
+  label {
+    color: var(--ink-soft);
+    font-size: 0.875rem;
+  }
+
+  .subscribe__row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2);
+  }
+
+  input {
+    min-width: 0;
+    padding: var(--space-3);
+    background: var(--ground);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    color: var(--ink);
+    font: inherit;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: var(--space-3) var(--space-5);
+    background: var(--forest);
+    color: var(--ground);
+    border: 1px solid var(--forest);
+    border-radius: 3px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background: var(--forest-hover);
+    border-color: var(--forest-hover);
+  }
+
+  fieldset:disabled input,
+  fieldset:disabled button {
+    cursor: not-allowed;
+  }
+
+  fieldset:disabled input {
+    background: #eeede8;
+    color: var(--ink-soft);
+  }
+
+  fieldset:disabled button {
+    background: #c5c6c1;
+    border-color: #c5c6c1;
+    color: #6a6e6a;
+  }
+
+  .subscribe__status {
+    color: var(--ink-soft);
+    font-size: 0.9375rem;
+  }
+
+  .subscribe__status a {
+    color: var(--forest);
+  }
+
+  .subscribe__status a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 40rem) {
+    .subscribe__row {
+      grid-template-columns: 1fr;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+</style>

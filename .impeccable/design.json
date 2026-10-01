@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-01T03:45:00+00:00",
+  "title": "Design System: Rodrigo Adones",
+  "extensions": {
+    "colorMeta": {
+      "ground": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "canonical": "#FAF9F6"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#202522"
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#555B57"
+      },
+      "forest": {
+        "role": "primary",
+        "displayName": "Forest",
+        "canonical": "#315A49"
+      },
+      "forest-hover": {
+        "role": "primary",
+        "displayName": "Forest Hover",
+        "canonical": "#23443A"
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Rule",
+        "canonical": "#DCDDD8"
+      }
+    }
+  },
+  "colors": {
+    "ground": "#FAF9F6",
+    "ink": "#202522",
+    "ink-soft": "#555B57",
+    "forest": "#315A49",
+    "forest-hover": "#23443A",
+    "rule": "#DCDDD8",
+    "input-disabled": "#EEEDE8",
+    "button-disabled": "#C5C6C1",
+    "button-disabled-text": "#6A6E6A",
+    "selection": "#D5E3DB"
+  },
+  "typography": {
+    "site-name": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "1.25rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    },
+    "display": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)",
+      "fontWeight": 600,
+      "lineHeight": 1.2,
+      "letterSpacing": "-0.02em"
+    },
+    "headline": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "1.5rem",
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "letterSpacing": "-0.015em"
+    },
+    "title": {
+      "fontFamily": "Source Serif 4, Iowan Old Style, Palatino Linotype, Palatino, serif",
+      "fontSize": "1.25rem",
+      "fontWeight": 600,
+      "lineHeight": 1.3,
+      "letterSpacing": "-0.015em"
+    },
+    "body": {
+      "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "fontSize": "1rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    },
+    "body-lg": {
+      "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "fontSize": "1.125rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    },
+    "meta": {
+      "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+      "fontSize": "0.875rem",
+      "fontWeight": 400,
+      "lineHeight": 1.5
+    }
+  },
+  "rounded": {
+    "none": "0px",
+    "control": "3px"
+  },
+  "spacing": {
+    "1": "0.25rem",
+    "2": "0.5rem",
+    "3": "0.75rem",
+    "4": "1rem",
+    "5": "1.5rem",
+    "6": "2rem",
+    "7": "3rem",
+    "8": "4.5rem"
+  },
+  "layout": {
+    "frame": "60rem",
+    "inner": "43rem",
+    "dateCol": "8.5rem",
+    "indent": "8rem",
+    "gutter": "1rem",
+    "narrowBreakpoint": "40rem"
+  },
+  "components": [
+    {
+      "name": "Site Name",
+      "kind": "link",
+      "refersTo": "site-name",
+      "description": "Serif site name linking home.",
+      "html": "<a class=\"ds-name\" href=\"/\">Rodrigo Adones</a>",
+      "css": ".ds-name{font-family:var(--font-serif);font-size:1.25rem;font-weight:400;color:var(--ink);text-decoration:none}.ds-name:hover{text-decoration:underline}.ds-name:focus-visible{outline:2px solid var(--forest);outline-offset:3px}"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Forest fill, 3px radius; darker on hover; greyed when disabled.",
+      "html": "<button class=\"ds-btn\">Subscribe</button>",
+      "css": ".ds-btn{padding:0.75rem 1.5rem;background:var(--forest);color:var(--ground);border:1px solid var(--forest);border-radius:3px;font-family:var(--font-sans);font-size:1rem;font-weight:600;cursor:pointer}.ds-btn:hover{background:var(--forest-hover);border-color:var(--forest-hover)}.ds-btn:focus-visible{outline:2px solid var(--forest);outline-offset:3px}.ds-btn:disabled{background:#c5c6c1;border-color:#c5c6c1;color:#6a6e6a;cursor:not-allowed}"
+    },
+    {
+      "name": "Email Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Visible label, email input with 3px radius beside the subscribe button.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field__label\" for=\"ds-email\">Email address</label><div class=\"ds-field__row\"><input class=\"ds-field__input\" id=\"ds-email\" type=\"email\" autocomplete=\"email\"><button class=\"ds-field__btn\">Subscribe</button></div></div>",
+      "css": ".ds-field{display:grid;gap:0.5rem;font-family:var(--font-sans)}.ds-field__label{color:var(--ink-soft);font-size:0.875rem}.ds-field__row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0.5rem}.ds-field__input{min-width:0;padding:0.75rem;background:var(--ground);border:1px solid var(--rule);border-radius:3px;color:var(--ink);font:inherit}.ds-field__input:focus-visible{outline:2px solid var(--forest);outline-offset:3px}.ds-field__btn{padding:0.75rem 1.5rem;background:var(--forest);color:var(--ground);border:1px solid var(--forest);border-radius:3px;font:inherit;font-weight:600;cursor:pointer}.ds-field__btn:hover{background:var(--forest-hover)}"
+    },
+    {
+      "name": "Primary Nav",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Exactly About and Blog; English chrome.",
+      "html": "<nav class=\"ds-nav\" lang=\"en\" aria-label=\"Primary\"><a href=\"/about/\">About</a><a href=\"/blog/\">Blog</a></nav>",
+      "css": ".ds-nav{display:flex;gap:1.5rem;font-family:var(--font-sans)}.ds-nav a{color:var(--ink);font-weight:500;text-decoration:none}.ds-nav a:hover,.ds-nav a[aria-current='page']{text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid var(--forest);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Quiet Editorial",
+    "overview": "A calm reading page for bilingual engineering writing. The homepage says who you are, states a thesis in one line, lists the four pillars, shows the latest three articles, and offers an honest newsletter stub. Hierarchy comes from Source Serif 4 headings, an indented inner column, and hairline rules — not cards, boards, or motion.",
+    "keyCharacteristics": [
+      "Ground #FAF9F6, ink #202522, soft ink #555B57, forest #315A49, rules #DCDDD8.",
+      "Source Serif 4 for site name and headings/titles; system sans for everything else.",
+      "Frame ≈ 60rem; inner ≈ 43rem indented ≈ 8rem; date column ≈ 8.5rem.",
+      "Square layout; 3px radius only on form controls.",
+      "Light only; no transitions or animations.",
+      "Chrome English; per-post lang on titles and descriptions."
+    ],
+    "rules": [
+      {
+        "name": "The Serif Speaks Rule",
+        "body": "Source Serif 4 for the site name, h1, h2, and article titles. System sans for body, meta, nav, and forms.",
+        "section": "typography"
+      },
+      {
+        "name": "The Forest Accent Rule",
+        "body": "Forest is for links, the primary button, and the focus ring. Soft ink carries secondary prose; never invent a third accent.",
+        "section": "colors"
+      },
+      {
+        "name": "The Daylight Rule",
+        "body": "Light-only. color-scheme: light; no dark theme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Still Page Rule",
+        "body": "No CSS transitions or animations on the homepage. Hover is underline or a darker button fill only.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Frame and Inner Rule",
+        "body": "Section rules span the frame; article rules span the inner column. Indent shrinks before the gutter collapses below 40rem.",
+        "section": "layout"
+      }
+    ],
+    "dos": [
+      "**Do** keep chrome lang=en and put lang on post title/description.",
+      "**Do** announce language badges as Spanish/English to assistive tech.",
+      "**Do** explain disabled newsletter state in text, not colour alone.",
+      "**Do** keep the visible [Placeholder] marker while intro copy is provisional.",
+      "**Do** prefer rules and whitespace over cards, pills, and stat strips."
+    ],
+    "donts": [
+      "**Don't** restore B612, board enamel, pillar strip paints, sequence numbers, or slide-out motion.",
+      "**Don't** add dark mode, client JS, or third-party font origins.",
+      "**Don't** put cards in the hero or first viewport clutter beyond brand, role, thesis, pillars, and the start of latest articles.",
+      "**Don't** use purple-on-white, cream-and-terracotta, or broadsheet newspaper defaults."
+    ]
+  }
+}

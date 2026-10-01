@@ -1,17 +1,44 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Intro from '../components/Intro.astro';
+import LatestArticles from '../components/LatestArticles.astro';
+import Subscribe from '../components/Subscribe.astro';
+import Footer from '../components/Footer.astro';
+import { latest, toEntries } from '../lib/home';
+import { IS_SAMPLE_DATA, samplePosts } from '../data/sample-posts';
 
+const entries = latest(toEntries(samplePosts), 3);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Rodrigo Adones"
+  description="Rodrigo Adones writes on AI-native delivery, platform & DX, delivery measurement, and commerce & payments, in English and Spanish."
+>
+  <div class="page">
+    <SiteHeader current="home" />
+
+    <main class="page__main" id="main">
+      <div class="frame">
+        <Intro />
+      </div>
+      <LatestArticles entries={entries} linked={!IS_SAMPLE_DATA} />
+      <Subscribe />
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    display: grid;
+    align-content: start;
+    min-height: 100vh;
+  }
+
+  .page__main {
+    display: grid;
+    align-content: start;
+  }
+</style>
