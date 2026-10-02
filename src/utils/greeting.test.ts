@@ -3,6 +3,6 @@ import { greet } from './greeting';
 
 describe('greet', () => {
   it('returns a greeting containing the given name', () => {
-    expect(greet('Astro')).toBe('Hello, Astro!');
+    expect(greet('Astro')).toBe('Hello, BREAK!');
   });
 });
