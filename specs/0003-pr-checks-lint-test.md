@@ -1,6 +1,6 @@
 # 0003: PR Checks — Lint and Test on GitHub Actions
 
-**Status:** Draft
+**Status:** Approved
 **Date:** 2026-10-01
 
 ## Context
